@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 14:55:55 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/23 18:08:23 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <fcntl.h>
+# define PIXEL_SIZE 64
 
 typedef struct s_vars{
 	mlx_t			*mlx;
@@ -43,7 +44,7 @@ typedef struct s_vars{
 	int				x_gate;
 	int				y_gate;
 	int				have_apples;
-}t_vars;
+} t_vars;
 
 int		ft_printf(char *str, ...);
 void    display_map_elements(t_vars *vars);
@@ -66,5 +67,6 @@ void	find_player(t_vars *vars);
 char	**copy_map(t_vars *vars);
 void 	print_map(t_vars *vars);
 void	pathfinder(int x, int y, char **map);
+void	free_struct(t_vars *vars);
 
 #endif

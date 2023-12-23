@@ -6,21 +6,31 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/22 14:32:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/23 18:24:26 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+
 void	init_display(t_vars *vars)
 {
 	vars->mlx = mlx_init(vars->height * 64, vars->width * 64, "Game", true);
+	if (!vars->mlx)
+		exit(EXIT_FAILURE);
 	vars->texture_open_gate = mlx_load_png("./pictures/open_gate.png");
 	vars->texture_gate = mlx_load_png("./pictures/gate.png");
 	vars->texture_apple = mlx_load_png("./pictures/apple.png");
 	vars->texture_ground = mlx_load_png("./pictures/ground.png");
 	vars->texture_knight = mlx_load_png("./pictures/knight.png");
 	vars->texture_wall = mlx_load_png("./pictures/wall_sprite.png");
+	if (!vars->texture_open_gate || !vars->texture_gate || !vars->texture_apple 
+			|| !vars->texture_ground || !vars->texture_knight || !vars->texture_wall)
+	{
+		free_struct(vars);
+		exit(EXIT_FAILURE);
+	}
+	// free strut + exit 
 	vars->img_open_gate = mlx_texture_to_image(vars->mlx,
 			vars->texture_open_gate);
 	vars->img_gate = mlx_texture_to_image(vars->mlx, vars->texture_gate);
@@ -36,13 +46,14 @@ int	parse_map(char *file, t_vars *vars)
 	char	*tmp;
 	int		fd;
 
-	fd = open(file, O_RDONLY);
+	fd = open(file, O_RDWR);
 	if (fd == -1)
 		return (-1);
 	tab = get_next_line(fd);
 	if (tab == NULL)
 	{
 		free(tab);
+		close(fd);
 		return (-1);
 	}
 	tmp = get_next_line(fd);

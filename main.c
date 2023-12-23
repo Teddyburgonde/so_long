@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 15:15:53 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/23 17:13:58 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,19 @@
 #include "MLX42/MLX42.h"
 #include "so_long.h"
 #include "libftprintf.h"
+
+void	ft_free(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 int    is_valid(t_vars *vars)
 {
@@ -28,6 +41,7 @@ int    is_valid(t_vars *vars)
 	tab_copy = copy_map(vars);
 	//print_map(vars);
     pathfinder(i, j, tab_copy);
+	ft_free(tab_copy);
 	//print_map(vars);
     return (1);
 }
@@ -49,7 +63,8 @@ int   struct_init(t_vars *vars, char *file)
     j = 0;
     i = 0;
 
-    parse_map(file, vars);
+    if (parse_map(file, vars) == -1)
+		return (1);
     if (check_wall_up(vars) == 1)
         return (1);
     if (check_wall_left(vars) == 1)
@@ -80,28 +95,47 @@ int   struct_init(t_vars *vars, char *file)
     return (0);
 }
 
+void free_texture(t_vars *vars)
+{
+	mlx_delete_texture(vars->texture_knight);
+	mlx_delete_texture(vars->texture_gate);
+	mlx_delete_texture(vars->texture_wall);
+	mlx_delete_texture(vars->texture_ground);
+	mlx_delete_texture(vars->texture_apple);
+	mlx_delete_texture(vars->texture_open_gate);
+}
+
+void	free_struct(t_vars *vars)
+{
+	free_texture(vars);
+	mlx_terminate(vars->mlx);
+	ft_free(vars->map);
+	free(vars);
+}
+
 int main(int argc, char **argv)
 { 
     t_vars *vars;
-    vars = malloc(sizeof(t_vars));
-	ft_bzero(vars, sizeof(t_vars));
     int i;
 
 	if (argc == 1)
 	{
-		ft_printf("ERROR error you have not loaded the card");
+		ft_printf("ERROR you have not loaded the map\n");
 		return (1);
 	}
+	vars = ft_calloc(sizeof(t_vars), 1);
+	if (!vars)
+		return (0);
     i = ft_strlen(argv[1]) - 1;
-    if (argv[1][i] != 'r' || argv[1][i - 1] != 'e' || argv[1][i - 2] != 'b' || argv[1][i - 3] != '.')
+    if ((argv[1][i] != 'r' || argv[1][i - 1] != 'e' || argv[1][i - 2] != 'b' || argv[1][i - 3] != '.') || struct_init(vars, argv[1]) == 1)
     {
-        ft_printf("ERROR MAP EXTENTION");
+		free(vars);
+        ft_printf("ERROR MAP EXTENTION\n");
         return (1);
     }
-    if (struct_init(vars, argv[1]) == 1)
-        return (1);
     display_map_elements(vars);
     mlx_key_hook(vars->mlx, key_press, vars);
     mlx_loop(vars->mlx);
+	free_struct(vars);
     return (0);
 }
