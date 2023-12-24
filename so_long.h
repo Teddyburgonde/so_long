@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 09:31:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 09:48:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,8 @@ void	key_press(mlx_key_data_t keydata, void *param);
 void	find_player(t_vars *vars);
 char	**copy_map(t_vars *vars);
 void	pathfinder(int x, int y, char **map);
-void	free_texture(t_vars *vars);
 void	free_struct(t_vars *vars);
+void	free_texture(t_vars *vars);
+void	ft_free(char **tab);
 
 #endif

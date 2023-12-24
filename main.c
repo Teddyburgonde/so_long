@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 09:31:54 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 09:41:55 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,13 +61,7 @@ int	struct_init(t_vars *vars, char *file)
 	i = 0;
 	if (parse_map(file, vars) == -1)
 		return (1);
-	if (check_wall_up(vars) == 1)
-		return (1);
-	if (check_wall_left(vars) == 1)
-		return (1);
-	if (check_wall_right(vars) == 1)
-		return (1);
-	if (check_wall_down(vars) == 1)
+	if (check_wall_up(vars) == 1 || check_wall_left(vars) == 1 || check_wall_right(vars) == 1 || check_wall_down(vars) == 1)
 		return (1);
 	if (error_collectibles(vars, have_apples) == 1)
 		return (1);
