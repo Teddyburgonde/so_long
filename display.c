@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 18:24:26 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 08:37:39 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	init_display(t_vars *vars)
 {
-	vars->mlx = mlx_init(vars->height * 64, vars->width * 64, "Game", true);
+	vars->mlx = mlx_init(vars->height * SPRITE_PIXEL, vars->width * SPRITE_PIXEL, "Game", true);
 	if (!vars->mlx)
 		exit(EXIT_FAILURE);
 	vars->texture_open_gate = mlx_load_png("./pictures/open_gate.png");
@@ -85,10 +85,10 @@ void    display_map_elements(t_vars *vars)
         while (vars->map[j][i])
         {   
             display_element_at_position(vars, vars->map[j][i], x , y);
-            x += 64;
+            x += SPRITE_PIXEL;
             i++;
         }
-        y += 64;
+        y += SPRITE_PIXEL;
         j++;
     }
 }

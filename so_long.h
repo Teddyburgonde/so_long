@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 18:08:23 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 08:40:41 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "libft.h"
 # include "get_next_line.h"
 # include <fcntl.h>
-# define PIXEL_SIZE 64
+# define SPRITE_PIXEL 64
 
 typedef struct s_vars{
 	mlx_t			*mlx;
@@ -37,17 +37,17 @@ typedef struct s_vars{
 	char			**map;
 	int				x;
 	int				y;
-	size_t				height;
-	size_t				width;
+	size_t			height;
+	size_t			width;
 	int				apple_count;
 	int				move_count;
 	int				x_gate;
 	int				y_gate;
 	int				have_apples;
-} t_vars;
+}	t_vars;
 
 int		ft_printf(char *str, ...);
-void    display_map_elements(t_vars *vars);
+void	display_map_elements(t_vars *vars);
 void	display_element_at_position(t_vars *vars, char element, int x, int y);
 int		parse_map(char *file, t_vars *vars);
 int		check_wall_up(t_vars *vars);
@@ -65,7 +65,6 @@ void	move_left_right(t_vars *vars, int movement);
 void	key_press(mlx_key_data_t keydata, void *param);
 void	find_player(t_vars *vars);
 char	**copy_map(t_vars *vars);
-void 	print_map(t_vars *vars);
 void	pathfinder(int x, int y, char **map);
 void	free_struct(t_vars *vars);
 
