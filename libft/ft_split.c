@@ -5,60 +5,91 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/30 12:25:28 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 15:06:09 by tebandam         ###   ########.fr       */
+/*   Created: 2023/12/24 11:08:52 by tebandam          #+#    #+#             */
+/*   Updated: 2023/12/24 12:29:19 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
+#include <stdlib.h>
 #include "libft.h"
 
-#include <stdlib.h>
-
-static int    strcount(char const *s, char c)
+int	wd_count_word(char const *str, char separator)
 {
-    int    i;
-    int    count;
+	int	i;
+	int	count;
 
-    i = 0;
-    count = 0;
-    while (s[i])
-    {
-        while (s[i] == c && s[i])
-            i++;
-        if (s[i] != c && s[i])
-            count++;
-        while (s[i] != c && s[i])
-            i++;
-    }
-    return (count);
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		while (str[i] && str[i] == separator)
+			i++;
+		if (str[i])
+			count++;
+		while (str[i] && str[i] != separator)
+			i++;
+	}
+	return (count);
 }
 
-char    **ft_split(char const *s, char c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-    unsigned int    i;
-    int                j;
-    size_t            len;
-    char            **split;
+	size_t	i;
+	size_t	j;
+	char	*tab;
 
-    i = 0;
-    j = 0;
-    if (!s)
-        return (NULL);
-    split = calloc(strcount(s, c) + 1, sizeof(char *));
-    if (split == NULL)
-        return (NULL);
-    while (j < strcount(s, c))
-    {
-        len = 0;
-        while (s[i] == c && s[i])
-            i++;
-        while (s[i + len] != c && s[i + len])
-            len++;
-        split[j] = ft_substr(s, i, len);
-        j++;
-        i += len;
-    }
-    split[j] = NULL;
-    return (split);
+	if (!s)
+		return (NULL);
+	if ((unsigned int)ft_strlen(s) < start)
+		return (ft_strdup(""));
+	j = ft_strlen(s + start);
+	if (j < len)
+		len = j;
+	tab = ft_calloc(len + 1, sizeof(char));
+	if (!tab)
+		return (NULL);
+	i = 0;
+	while (i < len)
+	{
+		tab[i] = s[start + i];
+		i++;
+	}
+	tab[i] = '\0';
+	return (tab);
+}
+
+static void	initialize_variables(int *i, int *j, int *k)
+{
+	*i = 0;
+	*j = 0;
+	*k = 0;
+}
+
+char	**ft_split(char const *str, char separator)
+{
+	char	**tab;
+	int		i;
+	int		j;
+	int		k;
+
+	initialize_variables(&i, &j, &k);
+	tab = ft_calloc(wd_count_word(str, separator) + 1, sizeof(char *));
+	while (str[i])
+	{
+		while (str[i] && str[i] == separator)
+			i++;
+		k = i;
+		while (str[k] && str[k] != separator)
+			k++;
+		tab[j] = ft_substr(str, i, k - i);
+		i = k;
+		if (str[i])
+		{
+			while (str[i] && str[i] == separator)
+				i++;
+		}
+		j++;
+	}
+	tab[j] = NULL;
+	return (tab);
 }

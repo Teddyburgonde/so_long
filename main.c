@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 09:41:55 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 10:12:05 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,6 @@
 #include "MLX42/MLX42.h"
 #include "so_long.h"
 #include "libftprintf.h"
-
-void	ft_free(char **tab)
-{
-	int	i;
-
-	i = 0;
-	while (tab[i])
-	{
-		free(tab[i]);
-		i++;
-	}
-	free(tab);
-}
 
 int	is_valid(t_vars *vars)
 {

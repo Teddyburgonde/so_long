@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/20 17:40:15 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/23 14:52:27 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 12:29:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <stdlib.h>
 
 # include "libft.h"
+
 char	*get_next_line(int fd);
 
 #endif 

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 09:32:40 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 09:33:00 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 10:12:11 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,16 @@ void	free_struct(t_vars *vars)
 	mlx_terminate(vars->mlx);
 	ft_free(vars->map);
 	free(vars);
+}
+void	ft_free(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
 }
