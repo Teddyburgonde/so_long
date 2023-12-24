@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:35:57 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 08:36:40 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 13:14:13 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 void	move(t_vars *vars, int element, int movement)
 {
 	if ((element == MLX_KEY_W
-			&& vars->map[(vars->y / SPRITE_PIXEL) - 1][vars->x / SPRITE_PIXEL] != '1')
-	|| (element == MLX_KEY_S
-			&& vars->map[(vars->y / SPRITE_PIXEL) + 1][vars->x / SPRITE_PIXEL] != '1'))
+			&& vars->map[(vars->y / SPRITE_PIXEL) - 1]
+			[vars->x / SPRITE_PIXEL] != '1')
+		|| (element == MLX_KEY_S
+			&& vars->map[(vars->y / SPRITE_PIXEL) + 1]
+			[vars->x / SPRITE_PIXEL] != '1'))
 	{
 		move_up_down(vars, movement);
 	}
-	if ((element == MLX_KEY_A && vars->map[vars->y / SPRITE_PIXEL][vars->x / SPRITE_PIXEL -1] != '1')
-	|| (element == MLX_KEY_D && vars->map[vars->y / SPRITE_PIXEL][vars->x / SPRITE_PIXEL +1] != '1'))
+	if ((element == MLX_KEY_A && vars->map[vars->y / SPRITE_PIXEL]
+			[vars->x / SPRITE_PIXEL -1] != '1')
+		|| (element == MLX_KEY_D && vars->map[vars->y / SPRITE_PIXEL]
+			[vars->x / SPRITE_PIXEL +1] != '1'))
 	{
 		move_left_right(vars, movement);
 	}
@@ -39,9 +43,9 @@ void	key_press(mlx_key_data_t keydata, void *param)
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_ESCAPE))
 		mlx_close_window(vars->mlx);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_W))
-		move(vars, MLX_KEY_W, - SPRITE_PIXEL);
+		move(vars, MLX_KEY_W, -SPRITE_PIXEL);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_A))
-		move(vars, MLX_KEY_A, - SPRITE_PIXEL);
+		move(vars, MLX_KEY_A, -SPRITE_PIXEL);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_S))
 		move(vars, MLX_KEY_S, SPRITE_PIXEL);
 	if (mlx_is_key_down(vars->mlx, MLX_KEY_D))

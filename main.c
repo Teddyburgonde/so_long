@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 10:12:05 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 13:54:40 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,15 @@ int	is_valid(t_vars *vars)
 	return (1);
 }
 
+void	initialize_value(int *i, int *j, int *have_apples, int *have_many_doors, int *have_character)
+{
+	*i = 0;
+	*j = 0;
+	*have_apples = 0;
+	*have_many_doors = 0;
+	*have_character = 0;
+}
+
 int	struct_init(t_vars *vars, char *file)
 {
 	int	i;
@@ -37,26 +46,19 @@ int	struct_init(t_vars *vars, char *file)
 	int	have_apples;
 	int	have_many_doors;
 	int	have_character;
-
-	have_many_doors = 0;
-	have_character = 0;
+	initialize_value(&i , &j, &have_apples, &have_many_doors, &have_character);
 	vars->move_count = 0;
 	vars->height = 0;
 	vars->width = 0;
-	have_apples = 0;
-	j = 0;
-	i = 0;
 	if (parse_map(file, vars) == -1)
 		return (1);
-	if (check_wall_up(vars) == 1 || check_wall_left(vars) == 1 || check_wall_right(vars) == 1 || check_wall_down(vars) == 1)
+	if (check_wall_up(vars) == 1 || check_wall_left(vars) == 1
+		|| check_wall_right(vars) == 1 || check_wall_down(vars) == 1)
 		return (1);
-	if (error_collectibles(vars, have_apples) == 1)
-		return (1);
-	if (error_too_many_doors(vars, have_many_doors) == 1)
-		return (1);
-	if (error_no_character(vars, have_character) == 1)
-		return (1);
-	if (error_too_many_characters(vars, have_character) == 1)
+	if (error_collectibles(vars, have_apples) == 1
+		|| error_too_many_doors(vars, have_many_doors) == 1
+		|| error_no_character(vars, have_character) == 1
+		|| error_too_many_characters(vars, have_character) == 1)
 		return (1);
 	while (vars->map[i])
 	{
