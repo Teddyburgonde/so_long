@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 13:54:40 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:21:48 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,11 @@ int	is_valid(t_vars *vars)
 	i = vars->x;
 	j = vars->y;
 	tab_copy = copy_map(vars);
+	if (!tab_copy)
+	{
+		free_struct(vars);
+		exit(EXIT_FAILURE);
+	}
 	pathfinder(i, j, tab_copy);
 	ft_free(tab_copy);
 	return (1);
@@ -39,6 +44,21 @@ void	initialize_value(int *i, int *j, int *have_apples, int *have_many_doors, in
 	*have_character = 0;
 }
 
+void  calcul_height(t_vars *vars)
+{
+	int	i;
+
+	i = 0;
+	while (vars->map[i])
+	{
+		if (vars->height < ft_strlen(vars->map[i]))
+			vars->height = ft_strlen(vars->map[i]);
+		i++;
+	}
+	i = 0;
+	while (vars->map[vars->width])
+		vars->width++;
+}
 int	struct_init(t_vars *vars, char *file)
 {
 	int	i;
@@ -50,6 +70,7 @@ int	struct_init(t_vars *vars, char *file)
 	vars->move_count = 0;
 	vars->height = 0;
 	vars->width = 0;
+	vars->map = NULL;
 	if (parse_map(file, vars) == -1)
 		return (1);
 	if (check_wall_up(vars) == 1 || check_wall_left(vars) == 1
@@ -60,14 +81,7 @@ int	struct_init(t_vars *vars, char *file)
 		|| error_no_character(vars, have_character) == 1
 		|| error_too_many_characters(vars, have_character) == 1)
 		return (1);
-	while (vars->map[i])
-	{
-		if (vars->height < ft_strlen(vars->map[i]))
-			vars->height = ft_strlen(vars->map[i]);
-		i++;
-	}
-	while (vars->map[vars->width])
-		vars->width++;
+	calcul_height(vars);
 	if (!is_valid(vars))
 		return (1);
 	init_display(vars);
@@ -81,7 +95,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		ft_printf("ERROR you have not loaded the map\n");
+		perror("ERROR you have not loaded the map\n");
 		return (1);
 	}
 	vars = ft_calloc(sizeof(t_vars), 1);
@@ -92,7 +106,7 @@ int	main(int argc, char **argv)
 		|| argv[1][i - 3] != '.') || struct_init(vars, argv[1]) == 1)
 	{
 		free(vars);
-		ft_printf("ERROR MAP EXTENTION\n");
+		perror("ERROR MAP EXTENTION\n");
 		return (1);
 	}
 	display_map_elements(vars);

@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 09:48:57 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:17:38 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,28 @@
 # include <fcntl.h>
 # define SPRITE_PIXEL 64
 
-typedef struct s_vars{
-	mlx_t			*mlx;
-	mlx_image_t		*img_gate;
-	mlx_image_t		*img_knight;
-	mlx_image_t		*img_wall;
-	mlx_image_t		*img_ground;
-	mlx_image_t		*img_apple;
-	mlx_image_t		*img_open_gate;
+typedef struct s_textures{
 	mlx_texture_t	*texture_knight;
 	mlx_texture_t	*texture_gate;
 	mlx_texture_t	*texture_wall;
 	mlx_texture_t	*texture_ground;
 	mlx_texture_t	*texture_apple;
 	mlx_texture_t	*texture_open_gate;
+} t_textures;
+
+typedef struct s_images{
+	mlx_image_t		*img_gate;
+	mlx_image_t		*img_knight;
+	mlx_image_t		*img_wall;
+	mlx_image_t		*img_ground;
+	mlx_image_t		*img_apple;
+	mlx_image_t		*img_open_gate;	
+} t_images;
+
+typedef struct s_vars{
+	mlx_t			*mlx;
+	t_textures		textures;
+	t_images        images;
 	char			**map;
 	int				x;
 	int				y;

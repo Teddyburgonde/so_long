@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 08:43:21 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:28:07 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,19 @@ char	**copy_map(t_vars *vars)
 	while (vars->map[j])
 		j++;
 	tab_copy = malloc(sizeof(char *) * (j + 1));
+	if (!tab_copy)
+		return (NULL);
 	j = 0;
 	while (vars->map[j])
 	{
 		tab_copy[j] = ft_strdup(vars->map[j]);
+		if (!tab_copy[j])
+		{
+			while (j > 0)
+				free(tab_copy[j--]);
+			free(tab_copy);
+			return (NULL);
+		}
 		j++;
 	}
 	tab_copy[j] = NULL;

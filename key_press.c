@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:35:57 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 13:14:13 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:18:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	key_press(mlx_key_data_t keydata, void *param)
 		move(vars, MLX_KEY_D, SPRITE_PIXEL);
 	if (vars->apple_count == 0)
 	{
-		mlx_image_to_window(vars->mlx, vars->img_ground,
+		mlx_image_to_window(vars->mlx, vars->images.img_ground,
 			vars->x_gate, vars->y_gate);
-		mlx_image_to_window(vars->mlx, vars->img_open_gate,
+		mlx_image_to_window(vars->mlx, vars->images.img_open_gate,
 			vars->x_gate, vars->y_gate);
 		if (vars->map[(vars->y / SPRITE_PIXEL)][vars->x / SPRITE_PIXEL] == 'E')
 			mlx_close_window(vars->mlx);

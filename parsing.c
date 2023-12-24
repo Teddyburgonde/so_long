@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:05:37 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/21 16:54:53 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:45:49 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	error_collectibles(t_vars *vars, int have_apples)
 	}
 	if (!have_apples)
 	{
-		ft_printf("ERROR : There are no collectibles \n");
+		perror("ERROR : There are no collectibles \n");
 		return (1);
 	}
 	return (0);
@@ -45,7 +45,6 @@ int	error_too_many_doors(t_vars *vars, int have_many_doors)
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (vars->map[j])
 	{
@@ -60,7 +59,7 @@ int	error_too_many_doors(t_vars *vars, int have_many_doors)
 	}
 	if (have_many_doors != 1)
 	{
-		ft_printf("ERROR : too many doors \n");
+		perror("ERROR : too many doors \n");
 		return (1);
 	}
 	return (0);
@@ -71,7 +70,6 @@ int	error_no_character(t_vars *vars, int have_character)
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (vars->map[j])
 	{
@@ -86,7 +84,7 @@ int	error_no_character(t_vars *vars, int have_character)
 	}
 	if (have_character != 1)
 	{
-		ft_printf("ERROR : there is no character \n");
+		perror("ERROR : there is no character \n");
 		return (1);
 	}
 	return (0);
@@ -97,7 +95,6 @@ int	error_too_many_characters(t_vars *vars, int have_character)
 	int	i;
 	int	j;
 
-	i = 0;
 	j = 0;
 	while (vars->map[j])
 	{
@@ -112,7 +109,7 @@ int	error_too_many_characters(t_vars *vars, int have_character)
 	}
 	if (have_character > 1)
 	{
-		ft_printf("ERROR : there is too mamy characters \n");
+		perror("ERROR : there is too mamy characters \n");
 		return (1);
 	}
 	return (0);
