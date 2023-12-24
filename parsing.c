@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:05:37 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 14:45:49 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 15:58:21 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	error_collectibles(t_vars *vars, int have_apples)
 	}
 	if (!have_apples)
 	{
-		perror("ERROR : There are no collectibles \n");
+		ft_printf("ERROR : There are no collectibles \n");
 		return (1);
 	}
 	return (0);
@@ -59,7 +59,7 @@ int	error_too_many_doors(t_vars *vars, int have_many_doors)
 	}
 	if (have_many_doors != 1)
 	{
-		perror("ERROR : too many doors \n");
+		ft_printf("ERROR : too many doors \n");
 		return (1);
 	}
 	return (0);
@@ -84,7 +84,7 @@ int	error_no_character(t_vars *vars, int have_character)
 	}
 	if (have_character != 1)
 	{
-		perror("ERROR : there is no character \n");
+		ft_printf("ERROR : there is no character \n");
 		return (1);
 	}
 	return (0);
@@ -109,8 +109,10 @@ int	error_too_many_characters(t_vars *vars, int have_character)
 	}
 	if (have_character > 1)
 	{
-		perror("ERROR : there is too mamy characters \n");
-		return (1);
+		ft_printf("ERROR : there is too mamy characters \n");
+		ft_free(vars->map);
+		free(vars);
+		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
