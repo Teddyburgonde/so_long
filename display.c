@@ -6,16 +6,16 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 08:37:39 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 09:28:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-
 void	init_display(t_vars *vars)
 {
-	vars->mlx = mlx_init(vars->height * SPRITE_PIXEL, vars->width * SPRITE_PIXEL, "Game", true);
+	vars->mlx = mlx_init(vars->height * SPRITE_PIXEL,
+			vars->width * SPRITE_PIXEL, "Game", true);
 	if (!vars->mlx)
 		exit(EXIT_FAILURE);
 	vars->texture_open_gate = mlx_load_png("./pictures/open_gate.png");
@@ -24,13 +24,13 @@ void	init_display(t_vars *vars)
 	vars->texture_ground = mlx_load_png("./pictures/ground.png");
 	vars->texture_knight = mlx_load_png("./pictures/knight.png");
 	vars->texture_wall = mlx_load_png("./pictures/wall_sprite.png");
-	if (!vars->texture_open_gate || !vars->texture_gate || !vars->texture_apple 
-			|| !vars->texture_ground || !vars->texture_knight || !vars->texture_wall)
+	if (!vars->texture_open_gate || !vars->texture_gate || !vars->texture_apple
+		|| !vars->texture_ground || !vars->texture_knight
+		|| !vars->texture_wall)
 	{
 		free_struct(vars);
 		exit(EXIT_FAILURE);
 	}
-	// free strut + exit 
 	vars->img_open_gate = mlx_texture_to_image(vars->mlx,
 			vars->texture_open_gate);
 	vars->img_gate = mlx_texture_to_image(vars->mlx, vars->texture_gate);
@@ -69,29 +69,30 @@ int	parse_map(char *file, t_vars *vars)
 	return (0);
 }
 
-void    display_map_elements(t_vars *vars)
+void	display_map_elements(t_vars *vars)
 {
-    int i;
-    int j;
-    int x;
-    int y;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
-    j = 0;
-    y = 0;
-    while (vars->map[j] != NULL)
-    {   
-        i = 0;
-        x = 0;
-        while (vars->map[j][i])
-        {   
-            display_element_at_position(vars, vars->map[j][i], x , y);
-            x += SPRITE_PIXEL;
-            i++;
-        }
-        y += SPRITE_PIXEL;
-        j++;
-    }
+	j = 0;
+	y = 0;
+	while (vars->map[j] != NULL)
+	{
+		i = 0;
+		x = 0;
+		while (vars->map[j][i])
+		{
+			display_element_at_position(vars, vars->map[j][i], x, y);
+			x += SPRITE_PIXEL;
+			i++;
+		}
+		y += SPRITE_PIXEL;
+		j++;
+	}
 }
+
 void	display_element_at_position(t_vars *vars, char element, int x, int y)
 {
 	mlx_image_to_window(vars->mlx, vars->img_ground, x, y);

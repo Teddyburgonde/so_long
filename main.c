@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 08:57:44 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/24 09:31:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,24 +89,6 @@ int	struct_init(t_vars *vars, char *file)
 		return (1);
 	init_display(vars);
 	return (0);
-}
-
-void	free_texture(t_vars *vars)
-{
-	mlx_delete_texture(vars->texture_knight);
-	mlx_delete_texture(vars->texture_gate);
-	mlx_delete_texture(vars->texture_wall);
-	mlx_delete_texture(vars->texture_ground);
-	mlx_delete_texture(vars->texture_apple);
-	mlx_delete_texture(vars->texture_open_gate);
-}
-
-void	free_struct(t_vars *vars)
-{
-	free_texture(vars);
-	mlx_terminate(vars->mlx);
-	ft_free(vars->map);
-	free(vars);
 }
 
 int	main(int argc, char **argv)
