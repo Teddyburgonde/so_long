@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 08:32:54 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 15:22:15 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ typedef struct s_vars{
 	int				x_gate;
 	int				y_gate;
 	int				have_apples;
+	int				have_many_doors;
+	int				have_character;
 }	t_vars;
 
 int		ft_printf(char *str, ...);
