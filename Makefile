@@ -19,7 +19,7 @@ RM=rm -f
 
 CC= clang
 
-CFLAGS= -I./MLX42/include -I./libft/includes -g
+CFLAGS= -Wall -Wextra -Werror -I./MLX42/include -I./libft/includes -g
 
 MLXFLAGS= -ldl -lX11 -lglfw -lm -lz -lbsd -lXext 
 all: $(NAME)
