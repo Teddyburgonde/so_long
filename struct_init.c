@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 08:20:28 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 16:17:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 17:08:16 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	calcul_height(t_vars *vars)
 {
-	int	i;
+	int		i;
 	size_t	save;
 
 	i = 0;
@@ -39,7 +39,6 @@ void	calcul_height(t_vars *vars)
 	while (vars->map[vars->width])
 		vars->width++;
 }
-
 
 int	struct_init(t_vars *vars, char *file)
 {

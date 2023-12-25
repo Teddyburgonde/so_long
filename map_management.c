@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 08:51:02 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 16:57:47 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	is_valid(t_vars *vars)
 	ft_free(tab_copy);
 	return (1);
 }
-
 
 char	**copy_map(t_vars *vars)
 {

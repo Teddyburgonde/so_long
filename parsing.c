@@ -6,11 +6,19 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:05:37 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 08:36:10 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 17:07:35 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	no_collectibles(t_vars *vars)
+{
+	ft_printf("ERROR : There are no collectibles \n");
+	ft_free(vars->map);
+	free(vars);
+	exit(EXIT_FAILURE);
+}
 
 int	error_collectibles(t_vars *vars, int have_apples)
 {
@@ -33,12 +41,7 @@ int	error_collectibles(t_vars *vars, int have_apples)
 		j++;
 	}
 	if (!have_apples)
-	{
-		ft_printf("ERROR : There are no collectibles \n");
-		ft_free(vars->map);
-		free(vars);
-		exit(EXIT_FAILURE);
-	}
+		no_collectibles(vars);
 	return (0);
 }
 
