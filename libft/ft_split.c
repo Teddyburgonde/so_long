@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/24 11:08:52 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 12:29:19 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 16:24:37 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ char	**ft_split(char const *str, char separator)
 
 	initialize_variables(&i, &j, &k);
 	tab = ft_calloc(wd_count_word(str, separator) + 1, sizeof(char *));
+	if (!tab)
+		return (NULL);
 	while (str[i])
 	{
 		while (str[i] && str[i] == separator)
@@ -83,11 +85,8 @@ char	**ft_split(char const *str, char separator)
 			k++;
 		tab[j] = ft_substr(str, i, k - i);
 		i = k;
-		if (str[i])
-		{
-			while (str[i] && str[i] == separator)
-				i++;
-		}
+		while (str[i] && str[i] == separator)
+			i++;
 		j++;
 	}
 	tab[j] = NULL;
