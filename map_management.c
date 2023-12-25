@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 15:28:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 08:51:02 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,27 @@ void	pathfinder(int x, int y, char **map)
 		pathfinder(x + 1, y, map);
 	}
 }
+
+int	is_valid(t_vars *vars)
+{
+	char	**tab_copy;
+	int		i;
+	int		j;
+
+	find_player(vars);
+	i = vars->x;
+	j = vars->y;
+	tab_copy = copy_map(vars);
+	if (!tab_copy)
+	{
+		free_struct(vars);
+		exit(EXIT_FAILURE);
+	}
+	pathfinder(i, j, tab_copy);
+	ft_free(tab_copy);
+	return (1);
+}
+
 
 char	**copy_map(t_vars *vars)
 {

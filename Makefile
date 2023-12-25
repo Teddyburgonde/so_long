@@ -9,6 +9,8 @@ key_press.c \
 main.c \
 map_management.c \
 parsing.c \
+struct_init.c \
+duplicate_error.c \
 free.c
 
 OBJS=$(SRCS:.c=.o)

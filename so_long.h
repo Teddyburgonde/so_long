@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/24 15:33:07 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/25 08:32:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,9 @@ void	pathfinder(int x, int y, char **map);
 void	free_struct(t_vars *vars);
 void	free_texture(t_vars *vars);
 void	ft_free(char **tab);
+int		struct_init(t_vars *vars, char *file);
+int		check_errors(t_vars *vars);
+void	calcul_height(t_vars *vars);
+int		is_valid(t_vars *vars);
 
 #endif
