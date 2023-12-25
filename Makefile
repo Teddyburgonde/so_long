@@ -11,6 +11,7 @@ map_management.c \
 parsing.c \
 struct_init.c \
 duplicate_error.c \
+parsing_map.c \
 free.c
 
 OBJS=$(SRCS:.c=.o)
