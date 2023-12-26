@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 08:20:28 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 17:08:16 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:07:50 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	calcul_height(t_vars *vars)
 	{
 		if (save != ft_strlen(vars->map[i]))
 		{
-			ft_printf("ERROR The map is not rectangular");
+			ft_putstr_fd("ERROR\nThe map is not rectangular!", 2);
 			if (vars->map != NULL)
 				ft_free(vars->map);
 			free(vars);
@@ -51,7 +51,7 @@ int	struct_init(t_vars *vars, char *file)
 	if (check_errors(vars) == 1)
 		return (1);
 	calcul_height(vars);
-	if (!is_valid(vars))
+	if (!is_valid(vars, 0, 0, 0))
 		return (1);
 	init_display(vars);
 	return (0);

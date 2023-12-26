@@ -6,80 +6,127 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/26 11:32:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/26 16:47:54 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	print_map(char **tab_copy)
+char	**pathfinder_exit(int a, int b, char **map)
 {
- 	int		k;
- 	k = 0;
- 	while (tab_copy[k])
+	if (map[b - 1][a] != '1' && map[b - 1][a] != 'Z')
 	{
-		ft_printf("%s\n", tab_copy[k]);
- 		k++;
+		map[b - 1][a] = 'Z';
+		pathfinder_exit(a, b - 1, map);
 	}
-	//ft_free(tab_copy);
+	if (map[b + 1][a] != '1' && map[b + 1][a] != 'Z')
+	{
+		map[b + 1][a] = 'Z';
+		pathfinder_exit(a, b + 1, map);
+	}
+	if (map[b][a - 1] != '1' && map[b][a - 1] != 'Z')
+	{
+		map[b][a - 1] = 'Z';
+		pathfinder_exit(a - 1, b, map);
+	}
+	if (map[b][a + 1] != '1' && map[b][a + 1] != 'Z')
+	{
+		map[b][a + 1] = 'Z';
+		pathfinder_exit(a + 1, b, map);
+	}
+	if ((map[b - 1][a] == '1') && (map[b][a + 1] == '1')
+		&& (map[b][a - 1] == '1') && (map[b][a + 1] == '1'))
+		message_exit_error(map);
+	return (map);
 }
-char	**pathfinder(int x, int y, char **map)
+
+char	**pathfinder_collectibles(int c, int d, char **map)
+{
+	if (map[d - 1][c] != '1' && map[d - 1][c] != 'W')
+	{
+		map[d - 1][c] = 'W';
+		pathfinder_collectibles(c, d - 1, map);
+	}
+	if (map[d + 1][c] != '1' && map[d + 1][c] != 'W')
+	{
+		map[d + 1][c] = 'W';
+		pathfinder_collectibles(c, d + 1, map);
+	}
+	if (map[d][c - 1] != '1' && map[d][c - 1] != 'W')
+	{
+		map[d][c - 1] = 'W';
+		pathfinder_collectibles(c - 1, d, map);
+	}
+	if (map[d][c + 1] != '1' && map[d][c + 1] != 'W')
+	{
+		map[d][c + 1] = 'W';
+		pathfinder_collectibles(c + 1, d, map);
+	}
+	if ((map[d - 1][c] == '1') && (map[d][c + 1] == '1')
+		&& (map[d][c - 1] == '1') && (map[d][c + 1] == '1'))
+		message_collectibles(map);
+	return (map);
+}
+
+char	**pathfinder_character(int x, int y, char **map)
 {
 	if (map[y - 1][x] != '1' && map[y - 1][x] != 'T')
 	{
 		map[y - 1][x] = 'T';
-		pathfinder(x, y - 1, map);
+		pathfinder_character(x, y - 1, map);
 	}
 	if (map[y + 1][x] != '1' && map[y + 1][x] != 'T')
 	{
 		map[y + 1][x] = 'T';
-		pathfinder(x, y + 1, map);
+		pathfinder_character(x, y + 1, map);
 	}
 	if (map[y][x - 1] != '1' && map[y][x - 1] != 'T')
 	{
 		map[y][x - 1] = 'T';
-		pathfinder(x - 1, y, map);
+		pathfinder_character(x - 1, y, map);
 	}
 	if (map[y][x + 1] != '1' && map[y][x + 1] != 'T')
 	{
 		map[y][x + 1] = 'T';
-		pathfinder(x + 1, y, map);
+		pathfinder_character(x + 1, y, map);
 	}
-	else if ((map[y - 1][x] == '1') && (map[y][x + 1] == '1') 
-		&& (map[y][x - 1] == '1') && (map[y][x + 1] == '1'))
-	{
-		ft_printf("ERROR the game cannot be completed");
-		ft_free(map);
-		exit(EXIT_FAILURE);
-	}
+	//if 
 	
+	// if ((map[y - 1][x] == '1') && (map[y][x + 1] == '1')
+	// 	&& (map[y][x - 1] == '1') && (map[y][x + 1] == '1'))
+	// 	message_character(map);
 	return (map);
 }
 
-int	is_valid(t_vars *vars)
+int	is_valid(t_vars *vars, int i, int j, int k)
 {
 	char	**tab_copy;
-	int		i;
-	int		j;
+	int		l;
+	int		m;
+	int		n;
 
 	find_player(vars);
+	find_gate(vars);
+	find_collectibles(vars);
 	i = vars->x;
 	j = vars->y;
+	k = vars->a;
+	l = vars->b;
+	m = vars->c;
+	n = vars->d;
 	tab_copy = copy_map(vars);
-	print_map(vars->map);
 	if (!tab_copy)
 	{
 		free_struct(vars);
 		exit(EXIT_FAILURE);
 	}
-	ft_printf("\n");
-	print_map(pathfinder(i, j, tab_copy));
-	
-	//print_map(vars->map);
+	pathfinder_character(i, j, tab_copy);
+	if ()
+	pathfinder_exit(k, l, tab_copy);
+	pathfinder_collectibles(m, n, tab_copy);
 	ft_free(tab_copy);
 	return (1);
 }
-
 
 char	**copy_map(t_vars *vars)
 {

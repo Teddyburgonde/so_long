@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:26:13 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 14:22:57 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/26 18:20:53 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	check_wall_up(t_vars *vars)
 	{
 		if (vars->map[0][i] != '1')
 		{
-			ft_printf("ERROR : INVALID MAP");
+			ft_putstr_fd("ERROR\n INVALID MAP\n", 2);
 			ft_free(vars->map);
 			free(vars);
 			exit(EXIT_FAILURE);
@@ -40,7 +40,7 @@ int	check_wall_left(t_vars *vars)
 	{
 		if (vars->map[j][0] != '1')
 		{
-			ft_printf("ERROR : INVALID MAP");
+			ft_putstr_fd("ERROR\n INVALID MAP!\n", 2);
 			ft_free(vars->map);
 			free(vars);
 			exit(EXIT_FAILURE);
@@ -66,7 +66,7 @@ int	check_wall_right(t_vars *vars)
 		i--;
 		if (vars->map[j][i] != '1')
 		{
-			ft_printf("ERROR : INVALID MAP");
+			ft_putstr_fd("ERROR\n INVALID MAP!\n", 2);
 			ft_free(vars->map);
 			free(vars);
 			exit(EXIT_FAILURE);
@@ -90,7 +90,7 @@ int	check_wall_down(t_vars *vars)
 	{
 		if (vars->map[j][i] != '1')
 		{
-			ft_printf("ERROR : INVALID MAP");
+			ft_putstr_fd("ERROR\n INVALID MAP!\n", 2);
 			ft_free(vars->map);
 			free(vars);
 			exit(EXIT_FAILURE);

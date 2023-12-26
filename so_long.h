@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/26 11:41:47 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/26 14:38:20 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ typedef struct s_vars{
 	int				have_apples;
 	int				have_many_doors;
 	int				have_character;
+	int				a;
+	int				b;
+	int				c;
+	int				d;
 }	t_vars;
 
 int		ft_printf(char *str, ...);
@@ -73,7 +77,6 @@ void	collectible_capture(t_vars *vars);
 void	move_up_down(t_vars *vars, int movement);
 void	move_left_right(t_vars *vars, int movement);
 void	key_press(mlx_key_data_t keydata, void *param);
-void	find_player(t_vars *vars);
 char	**copy_map(t_vars *vars);
 char	**pathfinder(int x, int y, char **map);
 void	free_struct(t_vars *vars);
@@ -82,6 +85,12 @@ void	ft_free(char **tab);
 int		struct_init(t_vars *vars, char *file);
 int		check_errors(t_vars *vars);
 void	calcul_height(t_vars *vars);
-int		is_valid(t_vars *vars);
+int		is_valid(t_vars *vars, int i, int j, int k);
+void	find_player(t_vars *vars);
+void	find_gate(t_vars *vars);
+void	find_collectibles(t_vars *vars);
+void	message_exit_error(char **map);
+void	message_collectibles(char **map);
+void	message_character(char **map);
 
 #endif
