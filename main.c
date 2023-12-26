@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 14:43:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 08:51:15 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/26 08:35:33 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int argc, char **argv)
 
 	if (argc == 1)
 	{
-		ft_printf("ERROR you have not loaded the map\n");
+		ft_printf("ERROR you didn't load the map\n");
 		return (1);
 	}
 	vars = ft_calloc(sizeof(t_vars), 1);
