@@ -12,7 +12,6 @@ parsing.c \
 struct_init.c \
 duplicate_error.c \
 parsing_map.c \
-message_error_pathfinder.c \
 free.c
 
 OBJS=$(SRCS:.c=.o)

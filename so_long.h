@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:55:59 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/26 14:38:20 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 08:20:29 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,7 @@ void	ft_free(char **tab);
 int		struct_init(t_vars *vars, char *file);
 int		check_errors(t_vars *vars);
 void	calcul_height(t_vars *vars);
-int		is_valid(t_vars *vars, int i, int j, int k);
+int		is_valid(t_vars *vars);
 void	find_player(t_vars *vars);
-void	find_gate(t_vars *vars);
-void	find_collectibles(t_vars *vars);
-void	message_exit_error(char **map);
-void	message_collectibles(char **map);
-void	message_character(char **map);
 
 #endif

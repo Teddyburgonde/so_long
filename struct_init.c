@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 08:20:28 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/26 18:07:50 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 08:19:01 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	struct_init(t_vars *vars, char *file)
 	if (check_errors(vars) == 1)
 		return (1);
 	calcul_height(vars);
-	if (!is_valid(vars, 0, 0, 0))
+	if (!is_valid(vars))
 		return (1);
 	init_display(vars);
 	return (0);
