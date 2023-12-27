@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:35:57 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 15:07:42 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:26:55 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	move(t_vars *vars, int element, int movement)
+static void	move(t_vars *vars, int element, int movement)
 {
 	if ((element == MLX_KEY_W
 			&& vars->map[(vars->y / SPRITE_PIXEL) - 1]

@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/27 10:10:00 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 11:47:25 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-char	**pathfinder(int x, int y, char **map)
+static char	**pathfinder(int x, int y, char **map)
 {
 	if (map[y - 1][x] != '1' && map[y - 1][x] != 'T')
 	{

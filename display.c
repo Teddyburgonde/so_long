@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 17:31:06 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 16:51:41 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 11:45:57 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_texture(t_vars *vars)
+static void	init_texture(t_vars *vars)
 {
 	vars->textures.texture_open_gate = mlx_load_png("./pictures/open_gate.png");
 	vars->textures.texture_gate = mlx_load_png("./pictures/gate.png");

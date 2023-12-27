@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 16:51:27 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/25 16:58:50 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:21:00 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	init_map(t_vars *vars, char *tmp, char *tab, int fd)
+static void	init_map(t_vars *vars, char *tmp, char *tab, int fd)
 {
 	while (tmp)
 	{

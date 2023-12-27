@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/25 08:20:28 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/27 08:19:01 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:13:44 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	calcul_height(t_vars *vars)
+static void	calcul_height(t_vars *vars)
 {
 	int		i;
 	size_t	save;

@@ -6,13 +6,13 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/21 16:05:37 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/27 08:40:04 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:16:12 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	no_collectibles(t_vars *vars)
+static void	no_collectibles(t_vars *vars)
 {
 	ft_putstr_fd("ERROR\nThere are no collectibles!\n", 2);
 	ft_free(vars->map);
