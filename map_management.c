@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/27 08:21:34 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 10:10:00 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,25 @@ char	**pathfinder(int x, int y, char **map)
 	return (map);
 }
 
+static void	message_pathfinder(int i, int j, char **tab_copy)
+{
+	while (tab_copy[j])
+	{
+		i = 0;
+		while (tab_copy[j][i])
+		{
+			if (tab_copy[j][i] == 'C' || tab_copy[j][i] == 'E')
+			{
+				ft_putstr_fd("ERROR\nThe game cannot be completed !", 2);
+				ft_free(tab_copy);
+				exit(EXIT_FAILURE);
+			}
+			i++;
+		}
+		j++;
+	}
+}
+
 int	is_valid(t_vars *vars)
 {
 	char	**tab_copy;
@@ -54,21 +73,7 @@ int	is_valid(t_vars *vars)
 	}
 	pathfinder(i, j, tab_copy);
 	j = 0;
-	while (tab_copy[j])
-	{
-		i = 0;
-		while (tab_copy[j][i])
-		{
-			if (tab_copy[j][i] == 'C' || tab_copy[j][i] == 'E')
-			{
-				ft_putstr_fd("ERROR\nThe game cannot be completed !", 2);
-				ft_free(tab_copy);
-				exit(EXIT_FAILURE);
-			}
-			i++;
-		}
-		j++;
-	}
+	message_pathfinder(i, j, tab_copy);
 	ft_free(tab_copy);
 	return (1);
 }
