@@ -6,7 +6,7 @@
 /*   By: tebandam <tebandam@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/22 13:27:20 by tebandam          #+#    #+#             */
-/*   Updated: 2023/12/27 11:47:25 by tebandam         ###   ########.fr       */
+/*   Updated: 2023/12/27 13:58:37 by tebandam         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,16 @@ static void	message_pathfinder(int i, int j, char **tab_copy)
 		i = 0;
 		while (tab_copy[j][i])
 		{
-			if (tab_copy[j][i] == 'C' || tab_copy[j][i] == 'E')
+			if (tab_copy[j][i] == 'E')
 			{
-				ft_putstr_fd("ERROR\nThe game cannot be completed !", 2);
+				ft_putstr_fd("ERROR\nThe exit isn't accessible !\n", 2);
+				ft_free(tab_copy);
+				exit(EXIT_FAILURE);
+			}
+			else if (tab_copy[j][i] == 'C')
+			{
+				ft_putstr_fd("ERROR\nThe collectible(s) ", 2);
+				ft_putstr_fd("aren't accessible !\n", 2);
 				ft_free(tab_copy);
 				exit(EXIT_FAILURE);
 			}
