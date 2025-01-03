@@ -125,19 +125,3 @@ void check_exit(t_game *game) {
     }
 }
 ```
-
-# Les différentes étapes 
-
-```c
-1. Makefile : Fichier de configuration pour compiler le projet.
-2. character_move.c : Gestion des mouvements du personnage.
-3. collectible_capture.c : Capture des objets collectables.
-4. display.c : Gestion de l'affichage.
-5. duplicate_error.c : Gestion des erreurs liées aux doublons.
-6. error_unclose_map.c : Vérification des erreurs pour une carte mal fermée.
-7. find_player.c : Localisation du joueur sur la carte.
-8. free.c : Libération de la mémoire.
-9. key_press.c : Gestion des entrées clavier.
-10. main.c : Point d'entrée principal du programme.
-```
-ps : Elles ne sont pas dans l'ordre.
